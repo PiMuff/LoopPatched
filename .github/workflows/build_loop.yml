@@ -63,3 +63,24 @@ jobs:
           path: |
             artifacts
             buildlog
+
+      # Customize Loop: Download and apply patches
+      - name: Customize Loop
+        run: |
+          # Loop: Manual bolus threshold
+          curl https://raw.githubusercontent.com/bjorkert/patches/master/manualBolusThreshold.patch | git apply --directory=Loop
+
+          # Loop: View PreMeal in Nightscout
+          curl https://raw.githubusercontent.com/bjorkert/patches/master/preMeal.patch | git apply --directory=Loop
+
+          # Required carbs
+          curl https://raw.githubusercontent.com/bjorkert/patches/master/updateRequiredCarbs.patch | git apply
+
+          # Dash Fast Forward
+          curl https://raw.githubusercontent.com/bjorkert/patches/master/fast_forward.patch | git apply
+
+          # Basic I:C Bolus Calculation
+          curl https://raw.githubusercontent.com/bjorkert/patches/master/basicICBolusCalc.patch | git apply
+
+          # 2 hours Lolipop
+          curl https://raw.githubusercontent.com/bjorkert/patches/master/2hlollipop.patch | git apply
